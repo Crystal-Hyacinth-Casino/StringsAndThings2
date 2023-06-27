@@ -1,6 +1,8 @@
 package io.zipcoder;
 
 
+import org.codehaus.plexus.util.StringUtils;
+
 /**
  * @author tariq
  */
@@ -15,8 +17,19 @@ public class StringsAndThings {
      *           countYZ("day fyyyz"); // Should return 2
      */
     public Integer countYZ(String input){
-        return null;
+
+        int count = 0;
+
+        String[] words = input.split(" ");
+        for(String word: words){
+            if(word.endsWith("y") || word.endsWith("z")){
+                count++;
+            }
+        }
+
+        return count;
     }
+
 
     /**
      * Given two strings, base and remove, return a version of the base string where all instances of the remove string have
@@ -28,7 +41,9 @@ public class StringsAndThings {
      *           removeString("Hello there", "x") // Should return "Hello there"
      */
     public String removeString(String base, String remove){
-        return null;
+
+
+        return base.replace(remove, "");
     }
 
     /**
@@ -40,7 +55,36 @@ public class StringsAndThings {
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
     public Boolean containsEqualNumberOfIsAndNot(String input){
-        return null;
+
+    int iscounter = 0;
+    String sub = "is";
+    int isIndex = 0;
+
+    int notcounter = 0;
+    String sub2 = "not";
+    int notIndex = 0;
+
+    while(isIndex != -1){
+        isIndex = input.indexOf(sub, isIndex); //find the first index that "is" is at, which is 0
+        if(isIndex != -1){
+            iscounter++;
+            isIndex += sub.length(); // then it adds 2 to the index which is the size of "is", and its doing this because its already accounted for the first is.
+        }
+    }
+
+    while(notIndex != -1){
+        notIndex = input.indexOf(sub2, notIndex);
+        if(notIndex != -1){
+            notcounter++;
+            notIndex += sub.length();
+        }
+    }
+
+
+       if (iscounter == notcounter) {
+           return true;
+       }
+        return false;
     }
 
     /**
@@ -51,7 +95,10 @@ public class StringsAndThings {
      *           gHappy("xxggyygxx") // Should return  false
      */
     public Boolean gIsHappy(String input){
-        return null;
+        if(input.contains("gg")){
+            return true;
+        }
+        return false;
     }
 
 
@@ -63,6 +110,16 @@ public class StringsAndThings {
      *            countTriple("a") // Should return 0
      */
     public Integer countTriple(String input){
-        return null;
+
+        int counter = 0;
+
+        for (int i = 0; i < input.length() - 2; i++) {
+            if(input.charAt(i) == input.charAt(i + 1) && input.charAt(i) == input.charAt(i+2)){
+                counter++;
+            }
+
+        }
+
+        return counter;
     }
 }
